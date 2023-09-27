@@ -225,6 +225,7 @@ class JsonResultSet(
         return v.asDouble
     }
 
+    @Deprecated("Deprecated in Java")
     override fun getBigDecimal(columnIndex: Int, scale: Int): BigDecimal {
         logger.trace { "getBigDecimal $columnIndex $scale " }
         checkClosed()
@@ -234,6 +235,7 @@ class JsonResultSet(
         return v.asBigDecimal
     }
 
+    @Deprecated("Deprecated in Java")
     override fun getBigDecimal(columnLabel: String?, scale: Int): BigDecimal {
         logger.trace { "getBigDecimal $columnLabel $scale " }
         checkClosed()
@@ -390,11 +392,8 @@ class JsonResultSet(
         checkClosed()
         val row = rows[rowIndex]
         val v = row[columnLabel] ?: JsonPrimitive(0)
-        if (v != null) {
-            val res = Timestamp.from(Instant.parse(v.asString))
-            return res
-        }
-        return null
+        val res = Timestamp.from(Instant.parse(v.asString))
+        return res
     }
 
     override fun getTimestamp(columnIndex: Int, cal: Calendar?): Timestamp? {
@@ -440,11 +439,13 @@ class JsonResultSet(
         throw SQLFeatureNotSupportedException("not implemented")
     }
 
+    @Deprecated("Deprecated in Java")
     override fun getUnicodeStream(columnIndex: Int): InputStream {
         logger.trace { "getUnicodeStream $columnIndex " }
         throw SQLFeatureNotSupportedException("not implemented")
     }
 
+    @Deprecated("Deprecated in Java")
     override fun getUnicodeStream(columnLabel: String?): InputStream {
         logger.trace { "getUnicodeStream $columnLabel " }
         throw SQLFeatureNotSupportedException("not implemented")
@@ -474,7 +475,7 @@ class JsonResultSet(
         throw SQLFeatureNotSupportedException("not implemented")
     }
 
-    override fun getMetaData(): java.sql.ResultSetMetaData {
+    override fun getMetaData(): ResultSetMetaData {
         logger.trace { "getMetaData  " }
         return AdoJdbcResultSetMetaData(columns)
     }

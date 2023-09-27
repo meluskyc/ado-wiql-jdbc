@@ -1,21 +1,17 @@
 import adoApi.*
 import io.ktor.client.*
 import io.ktor.client.call.*
-import io.ktor.client.call.body
-import io.ktor.client.call.body
-import io.ktor.client.call.body
 import io.ktor.client.engine.apache.*
 import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.request.*
 import io.ktor.http.*
+import io.ktor.serialization.gson.*
 import mu.KotlinLogging
 import org.apache.http.conn.ssl.TrustAllStrategy
 import org.apache.http.ssl.SSLContextBuilder
 import java.net.URL
-import java.util.*
-import io.ktor.shared.serialization.kotlinx.gson.*;
-import java.net.URLEncoder
 import java.sql.SQLException
+import java.util.*
 
 data class AdoWiqlClientSendResult(
     val wiqlResponse: WiqlResponse,
